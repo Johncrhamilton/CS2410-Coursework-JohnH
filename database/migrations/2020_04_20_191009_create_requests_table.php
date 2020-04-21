@@ -17,6 +17,7 @@ class CreateRequestsTable extends Migration
     {
       $table->increments('id');
       $table->string('user_name',40);
+      $table->enum('item_category', ['pet', 'phone', 'jewellery']);
       $table->text('reason');
       $table->unsignedInteger('user_id');
       $table->unsignedInteger('item_id');
