@@ -9,7 +9,7 @@
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
   <!-- Styles -->
-  <link rel="stylesheet" type="text/css" href="{{ url('/css/WelcomeFiLo.css') }}" />
+  <link rel="stylesheet" type="text/css" href="{{ url('/css/welcome.css') }}" />
 </head>
 <body>
   <div class="flex-center position-ref full-height">
@@ -19,33 +19,31 @@
       <a href="{{ url('/home') }}">Dashboard</a>
       @else
       <a href="{{ route('login') }}">Login</a>
-
       @if (Route::has('register'))
       <a href="{{ route('register') }}">Register</a>
       @endif
       @endauth
     </div>
     @endif
-
     <div class="content">
       <div class="title m-b-md">
         Find The Lost
       </div>
-
-      <div class="links">
-        <a href="https://laravel.com/docs">Docs</a>
-        <a href="https://laracasts.com">Laracasts</a>
-        <a href="https://laravel-news.com">News</a>
-        <a href="https://blog.laravel.com">Blog</a>
-        <a href="https://nova.laravel.com">Nova</a>
-        <a href="https://forge.laravel.com">Forge</a>
-        <a href="https://vapor.laravel.com">Vapor</a>
-        <a href="https://github.com/laravel/laravel">GitHub</a>
+      <div>
+        @guest
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url('lost_items') }}">Display lost items</a>
+        </li>
+        @else
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url('lost_items') }}">Display lost items</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('lost_items.create') }}">Add a lost item</a>
+        </li>
+        @endguest
       </div>
     </div>
   </div>
-  <main class="py-4">
-    @yield('items')
-  </main>
 </body>
 </html>

@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class LostItem extends Model
+class ItemRequest extends Model
 {
   /**
    * The attributes that are mass assignable.
@@ -12,6 +12,6 @@ class LostItem extends Model
    * @var array
    */
   protected $fillable = [
-      'found_time', 'found_place', 'colour', 'photo', 'description'
+      'user_name', 'item_id', 'reason',
   ];
 }

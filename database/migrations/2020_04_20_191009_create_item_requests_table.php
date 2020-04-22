@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRequestsTable extends Migration
+class CreateItemRequestsTable extends Migration
 {
   /**
   * Run the migrations.
@@ -13,18 +13,18 @@ class CreateRequestsTable extends Migration
   */
   public function up()
   {
-    Schema::create('requests', function (Blueprint $table)
+    Schema::create('item_requests', function (Blueprint $table)
     {
       $table->increments('id');
+      $table->unsignedInteger('user_id');
       $table->string('user_name',40);
+      $table->unsignedInteger('item_id');
       $table->enum('item_category', ['pet', 'phone', 'jewellery']);
       $table->text('reason');
-      $table->unsignedInteger('user_id');
-      $table->unsignedInteger('item_id');
       $table->timestamps();
     });
 
-    Schema::table('requests', function($table)
+    Schema::table('item_requests', function($table)
     {
       $table->foreign('user_id')->references('id')->on('users')->onDelete('CASCADE')->onUpdate('CASCADE');
       $table->foreign('item_id')->references('id')->on('lost_items')->onDelete('CASCADE')->onUpdate('CASCADE');
@@ -38,6 +38,6 @@ class CreateRequestsTable extends Migration
   */
   public function down()
   {
-    Schema::dropIfExists('requests');
+    Schema::dropIfExists('item_requests');
   }
 }

@@ -21,6 +21,8 @@ Route::get('/', function ()
 
 Auth::routes(['verify' => true]);
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('display_user',
-'UserController@display')->name('display_user');
+Route::get('home', 'HomeController@index')->name('home');
+Route::get('display_user','UserController@display')->name('display_user');
+
+Route::resource('lost_items','LostItemController');
+Route::resource('item_requests','ItemRequestController');
