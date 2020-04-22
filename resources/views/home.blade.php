@@ -16,6 +16,7 @@
 
                     You are logged in!
                     <br>
+                    <br>
                     <a href="{{ route('display_user') }}" class="btn btnprimary">Display Users </a>
                 </div>
             </div>

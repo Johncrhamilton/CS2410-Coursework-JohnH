@@ -23,3 +23,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('display_user',
 'UserController@display')->name('display_user');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
