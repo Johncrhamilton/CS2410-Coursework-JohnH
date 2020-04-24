@@ -4,9 +4,22 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\LostItem;
+use Gate;
 
 class LostItemController extends Controller
 {
+
+  /**
+  * Display a listing of the resource.
+  *
+  * @return \Illuminate\Http\Response
+  */
+  public function index()
+  {
+    $lost_items = LostItem::all()->toArray();
+    return view('welcome', compact('lost_items'));
+  }
+
   /**
   * Show the form for creating a new resource.
   *
@@ -99,6 +112,11 @@ class LostItemController extends Controller
   */
   public function update(Request $request, $id)
   {
+    if (Gate::denies('user-admin'))
+    {
+      return back()->with('error','Only administrators can edit items.');
+    }
+
     $lost_item = LostItem::find($id);
     $this->validate(request(),
     [
@@ -147,6 +165,11 @@ class LostItemController extends Controller
   */
   public function destroy($id)
   {
+    if (Gate::denies('user-admin'))
+    {
+      return back()->with('error','Only administrators can delete items.');
+    }
+
     $lost_item = LostItem::find($id);
     $lost_item->delete();
     return redirect('/')->with('success','The lost item has been deleted.');

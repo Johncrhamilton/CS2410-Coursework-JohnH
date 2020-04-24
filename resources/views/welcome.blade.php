@@ -18,24 +18,34 @@
     @if (Route::has('login'))
     <div class="top-right links">
       @auth
-      <a href="{{ url('/home') }}"><span>Dashboard</span></a>
+      <a id="white" href="{{ url('/home') }}"> <span>Dashboard<span></a>
       @else
-      <a href="{{ route('login') }}"><span>Login</span></a>
+      <a id="white" href="{{ route('login') }}"><span>Login</span></a>
       @if (Route::has('register'))
-      <a href="{{ route('register') }}"><span>Register</span></a>
+      <a id="white" href="{{ route('register') }}"><span>Register</span></a>
       @endif
       @endauth
     </div>
     @endif
     <div class="content">
-      <div class="title">
+      <div id="white" class="title">
         Find The Lost
       </div>
       <div>
         @if (session('status'))
-        <div class="alert alert-success">
+        <div id="black" class="alert alert-dark">
           {{ session('status') }}
         </div>
+        @endif
+        @if ($errors->any())
+        <div class="alert alert-danger">
+          <ul>
+            @foreach ($errors->all() as $error)
+            <li id="black">{{ $error }}</li>
+            @endforeach
+          </ul>
+        </div>
+        <br/>
         @endif
         <div class="row justify-content-center">
           <div>
@@ -45,22 +55,22 @@
             <table class="table table-striped">
               <thead>
                 <tr>
-                  <th>Category</th>
-                  <th>Colour</th>
-                  <th>Date found</th>
+                  <th id="white">Category</th>
+                  <th id="white">Colour</th>
+                  <th id="white">Date found</th>
                   @auth
-                  <th colspan="4">Actions</th>
+                  <th id="white" colspan="4">Actions</th>
                   @else
-                  <th colspan="4">Login/Register for Actions</th>
+                  <th id="white" colspan="4">Login/Register for Actions</th>
                   @endauth
                 </tr>
               </thead>
               <tbody>
                 @foreach($lost_items as $lost_item)
                 <tr>
-                  <td>{{$lost_item['category']}}</td>
-                  <td>{{$lost_item['colour']}}</td>
-                  <td>{{$lost_item['found_time']}}</td>
+                  <td id="white">{{$lost_item['category']}}</td>
+                  <td id="white">{{$lost_item['colour']}}</td>
+                  <td id="white">{{$lost_item['found_time']}}</td>
                   @auth
                   <td><a href="{{action('LostItemController@show', $lost_item['id'])}}" class="btn btn-primary">Details</a></td>
                   <td><a href="{{action('ItemRequestController@create', $lost_item['id']) }}" class="btn btn-primary">Request</a></td>

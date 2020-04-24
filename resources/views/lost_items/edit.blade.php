@@ -22,8 +22,14 @@
         </div>
         <br/>
         @endif
+        @if (\Session::has('error'))
+        <div class="alert alert-danger">
+          <p id="black">{{ \Session::get('error') }}</p>
+        </div>
+        <br/>
+        @endif
         <div class="card-body">
-          <form class="form-horizontal" method="POST" action="{{ action('ItemRequestController@update',$lost_item['id']) }}" enctype="multipart/form-data">
+          <form class="form-horizontal" method="POST" action="{{ action('LostItemController@update',$lost_item['id']) }}" enctype="multipart/form-data">
             @method('PATCH')
             @csrf
             <div class="col-md-8">
@@ -36,24 +42,24 @@
             </div>
             <div class="col-md-8">
               <label>Time item was roughly found:</label>
-              <input type="text" name="found_time" placeholder="YYYY-MM-DD hh:mm:ss"/>
+              <input type="text" name="found_time" value="{{$lost_item->found_time}}"/>
             </div>
             <div class="col-md-8">
               <label>Place item was found:</label>
-              <input type="text" name="found_place"/>
+              <input type="text" name="found_place" value="{{$lost_item->found_place}}"/>
             </div>
             <div class="col-md-8">
               <label>Colour:</label>
-              <input type="text" name="colour"/>
+              <input type="text" name="colour" value="{{$lost_item->colour}}"/>
             </div>
             <div class="col-md-8">
               <label>Image of the item:</label>
-              <input type="file" name="image" placeholder="Image file" />
+              <input type="file" name="image" placeholder="Image file" class="custom-file-upload"/>
             </div>
             <div class="col-md-8">
               <label>Description:</label>
               <br/>
-              <textarea id="black" rows="4" cols="50" name="description">A description of the item.</textarea>
+              <textarea id="black" rows="4" cols="50" name="description">{{$lost_item->description}}</textarea>
             </div>
             <div class="col-md-8 col-md-offset-4">
               <input type="submit" class="btn btn-primary"/>

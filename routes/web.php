@@ -16,9 +16,7 @@ use Illuminate\Support\Facades\Route;
 Auth::routes(['verify' => true]);
 
 Route::get('/', 'WelcomeController@index');
-
 Route::get('home', 'HomeController@index')->name('home');
-
 Route::get('display_users','UserController@display')->name('display_users');
 
 Route::resource('lost_items','LostItemController');

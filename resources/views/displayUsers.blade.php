@@ -4,6 +4,7 @@
   <div class="row justify-content-center">
     <div class="col-md-8">
       <div class="card">
+        @auth
         <div class="card-header">Registered Users</div>
         <div class="card-body">
           @if (session('status'))
@@ -32,6 +33,9 @@
             </tbody>
           </table>
         </div>
+        @else
+        <div style="color:#ff0000;">Please login/register to access these services!</div>
+        @endauth
       </div>
     </div>
   </div>

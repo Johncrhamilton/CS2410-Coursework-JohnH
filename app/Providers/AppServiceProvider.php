@@ -3,8 +3,6 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use App\User;
-use Gate;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -16,7 +14,7 @@ class AppServiceProvider extends ServiceProvider
   */
   public function boot()
   {
-    $this->registerPolicies();
+    //
   }
 
   /**
@@ -36,9 +34,6 @@ class AppServiceProvider extends ServiceProvider
   */
   public function registerPolicies()
   {
-    Gate::define('displayall', function ($user)
-    {
-      return $user->admin;
-    });
+    //
   }
 }

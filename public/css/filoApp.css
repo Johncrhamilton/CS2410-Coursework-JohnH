@@ -24,6 +24,12 @@ input, a, button
   color: black !important;
 }
 
+nav
+{
+  color: white !important;
+  background-color: rgba(30,30,30,0.95) !important;
+}
+
 #black
 {
   color: black !important;
@@ -32,12 +38,6 @@ input, a, button
 #white
 {
   color: white !important;
-}
-
-nav
-{
-  color: white !important;
-  background-color: rgba(30,30,30,0.95) !important;
 }
 
 .custom-file-upload::before

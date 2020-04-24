@@ -1,6 +1,5 @@
 *
 {
-  color: white;
   font-family: 'Nunito', sans-serif;
   font-weight: 200;
 }
@@ -36,9 +35,14 @@ input, a, button
   color: black !important;
 }
 
-span
+#black
 {
-  color: white;
+  color: black !important;
+}
+
+#white
+{
+  color: white !important;
 }
 
 .links > a

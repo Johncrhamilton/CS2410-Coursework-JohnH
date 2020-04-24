@@ -10,7 +10,7 @@
         <div class="alert alert-danger">
           <ul>
             @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
+            <li id="black">{{ $error }}</li>
             @endforeach
           </ul>
         </div>
@@ -18,7 +18,13 @@
         @endif
         @if (\Session::has('success'))
         <div class="alert alert-success">
-          <p>{{ \Session::get('success') }}</p>
+          <p id="black">{{ \Session::get('success') }}</p>
+        </div>
+        <br/>
+        @endif
+        @if (\Session::has('error'))
+        <div class="alert alert-danger">
+          <p id="black">{{ \Session::get('error') }}</p>
         </div>
         <br/>
         @endif

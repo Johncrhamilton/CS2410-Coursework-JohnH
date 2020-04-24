@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\ItemRequest;
 use App\LostItem;
+use Gate;
 
 class ItemRequestController extends Controller
 {
@@ -15,7 +16,16 @@ class ItemRequestController extends Controller
   */
   public function index()
   {
-    $item_requests = ItemRequest::all()->toArray();
+    $item_requests = ItemRequest::all();
+    if (Gate::denies('user-admin'))
+    {
+      $user = auth()->user();
+      if(isset( $user ))
+      {
+        $item_requests = $item_requests->where('user_id', auth()->user()->id);
+      }
+    }
+    $item_requests->toArray();
     return view('item_requests.index', compact('item_requests'));
   }
 
@@ -25,9 +35,9 @@ class ItemRequestController extends Controller
   * @param  int  $id
   * @return \Illuminate\Http\Response
   */
-  public function create($id)
+  public function create($lost_item_id)
   {
-    $lost_item = LostItem::find($id);
+    $lost_item = LostItem::find($lost_item_id);
     return view('item_requests.create', compact('lost_item'));
   }
 
@@ -93,6 +103,11 @@ class ItemRequestController extends Controller
   */
   public function update(Request $request, $id)
   {
+    if (Gate::denies('user-admin'))
+    {
+      return back()->with('error','Only administrators can edit requests.');
+    }
+
     $item_request = ItemRequest::find($id);
     $this->validate(request(),
     [
@@ -120,6 +135,11 @@ class ItemRequestController extends Controller
   */
   public function destroy($id)
   {
+    if (Gate::denies('user-admin'))
+    {
+      return back()->with('error','Only administrators can delete item requests.');
+    }
+
     $item_request = ItemRequest::find($id);
     $item_request->delete();
     return redirect('item_requests')->with('success','Item request has been deleted.');
