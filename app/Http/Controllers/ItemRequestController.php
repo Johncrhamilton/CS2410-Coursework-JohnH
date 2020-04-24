@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\ItemRequest;
+use App\LostItem;
 
 class ItemRequestController extends Controller
 {
@@ -21,11 +22,13 @@ class ItemRequestController extends Controller
   /**
   * Show the form for creating a new resource.
   *
+  * @param  int  $id
   * @return \Illuminate\Http\Response
   */
-  public function create()
+  public function create($id)
   {
-    return view('item_requests.create');
+    $lost_item = LostItem::find($id);
+    return view('item_requests.create', compact('lost_item'));
   }
 
   /**
@@ -39,8 +42,9 @@ class ItemRequestController extends Controller
     $item_request = $this->validate(request(),
     [
       'user_name' => 'required',
-      'item_id' => 'required',
+      'item_id' => 'required|numeric',
       'item_category' => 'required',
+      'item_description' => 'required',
       'reason' => 'required',
     ]);
 
@@ -49,6 +53,7 @@ class ItemRequestController extends Controller
     $item_request->user_name = $request->input('user_name');
     $item_request->item_id = $request->input('item_id');
     $item_request->item_category = $request->input('item_category');
+    $item_request->item_description = $request->input('item_description');
     $item_request->reason = $request->input('reason');
     $item_request->created_at = now();
     $item_request->save();
@@ -92,8 +97,9 @@ class ItemRequestController extends Controller
     $this->validate(request(),
     [
       'user_name' => 'required',
-      'item_id' => 'required',
+      'item_id' => 'required|numeric',
       'item_category' => 'required',
+      'item_description' => 'required',
       'reason' => 'required',
     ]);
 

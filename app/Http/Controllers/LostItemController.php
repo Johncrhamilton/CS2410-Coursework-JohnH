@@ -8,17 +8,6 @@ use App\LostItem;
 class LostItemController extends Controller
 {
   /**
-  * Display a listing of the resource.
-  *
-  * @return \Illuminate\Http\Response
-  */
-  public function index()
-  {
-    $lost_items = LostItem::all()->toArray();
-    return view('lost_items.index', compact('lost_items'));
-  }
-
-  /**
   * Show the form for creating a new resource.
   *
   * @return \Illuminate\Http\Response
@@ -147,7 +136,7 @@ class LostItemController extends Controller
     $lost_item->description = $request->input('description');
     $lost_item->created_at = now();
     $lost_item->save();
-    return redirect('lost_items')->with('success','The lost item has been updated.');
+    return redirect('/')->with('success','The lost item has been updated.');
   }
 
   /**
@@ -160,6 +149,6 @@ class LostItemController extends Controller
   {
     $lost_item = LostItem::find($id);
     $lost_item->delete();
-    return redirect('lost_items')->with('success','The lost item has been deleted.');
+    return redirect('/')->with('success','The lost item has been deleted.');
   }
 }

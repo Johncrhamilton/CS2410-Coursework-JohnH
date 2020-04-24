@@ -2,16 +2,18 @@
 @section('content')
 <div class="container">
   <div class="row justify-content-center">
-    <div class="col-md-8 ">
+    <div class="col-md-10">
       <div class="card">
+        @auth
         <div class="card-header">Display item request</div>
         <div class="card-body">
           <table class="table table-striped" border="1" >
-            <tr> <th>User id</th> <td> {{$item_request['user_id']}}</td></tr>
-            <tr> <th>User name</th> <td>{{$item_request->user_name}}</td></tr>
-            <tr> <th>Item id</th> <td>{{$item_request->item_id}}</td></tr>
-            <tr> <th>Item category</th> <td>{{$item_request->item_category}}</td></tr>
-            <tr> <th>Reason</th> <td style="max-width:150px">{{$item_request->reason}}</td></tr>
+            <tr> <th>User id:</th> <td> {{$item_request['user_id']}}</td></tr>
+            <tr> <th>User name:</th> <td>{{$item_request->user_name}}</td></tr>
+            <tr> <th>Item id:</th> <td>{{$item_request->item_id}}</td></tr>
+            <tr> <th>Item category:</th> <td>{{$item_request->item_category}}</td></tr>
+            <tr> <th>Item description:</th> <td>{{$item_request->item_description}}</td></tr>
+            <tr> <th>Reason:</th> <td style="max-width:150px">{{$item_request->reason}}</td></tr>
           </table>
           <table>
             <tr>
@@ -26,11 +28,14 @@
                 </form>
               </td>
               <td>
-                <a href="{{route('item_requests.index')}}" class="btn btn-primary" role="button">Back to the list</a>
+                <a href="{{route('item_requests.index')}}" class="btn btn-primary" role="button">Back to the request list</a>
               </td>
             </tr>
           </table>
         </div>
+        @else
+        <div style="color:#ff0000;">Please login/register to access these services!</div>
+        @endauth
       </div>
     </div>
   </div>

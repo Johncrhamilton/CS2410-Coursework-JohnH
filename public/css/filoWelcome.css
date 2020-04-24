@@ -1,0 +1,86 @@
+*
+{
+  color: white;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 200;
+}
+
+html, body
+{
+  height: 100vh;
+  margin: 0;
+}
+
+body
+{
+  background-image: url("../images/find_the_lost.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+table
+{
+  display: block;
+  background-color: rgba(30,30,30,0.95);
+  border-collapse: collapse;
+  border-spacing: 0;
+  border: 1px solid #ddd;
+  width: 400px;
+  height: 500px;
+  overflow-y: scroll;
+}
+
+input, a, button
+{
+  color: black !important;
+}
+
+span
+{
+  color: white;
+}
+
+.links > a
+{
+  padding: 0 25px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .1rem;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.full-height
+{
+  height: 100vh;
+}
+
+.flex-center
+{
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.position-ref
+{
+  position: relative;
+}
+
+.top-right
+{
+  position: absolute;
+  right: 10px;
+  top: 18px;
+}
+
+.content
+{
+  text-align: center;
+}
+
+.title
+{
+  font-size: 84px;
+}

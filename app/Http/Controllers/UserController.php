@@ -15,6 +15,6 @@ class UserController extends Controller
     {
       $usersQuery = $usersQuery->where('id', auth()->user()->id);
     }
-    return view('/displayRegisteredUsers', array('users'=>$usersQuery));
+    return view('/displayUsers', array('users'=>$usersQuery));
   }
 }

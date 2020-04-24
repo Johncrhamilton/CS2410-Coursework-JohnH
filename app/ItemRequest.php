@@ -12,6 +12,6 @@ class ItemRequest extends Model
    * @var array
    */
   protected $fillable = [
-      'user_name', 'item_id', 'reason',
+      'user_name', 'reason',
   ];
 }

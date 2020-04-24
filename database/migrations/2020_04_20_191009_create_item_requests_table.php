@@ -19,11 +19,12 @@ class CreateItemRequestsTable extends Migration
       $table->unsignedInteger('user_id');
       $table->string('user_name',40);
       $table->unsignedInteger('item_id');
+      $table->text('item_description');
       $table->enum('item_category', ['pet', 'phone', 'jewellery']);
       $table->text('reason');
       $table->timestamps();
     });
-
+    
     Schema::table('item_requests', function($table)
     {
       $table->foreign('user_id')->references('id')->on('users')->onDelete('CASCADE')->onUpdate('CASCADE');
