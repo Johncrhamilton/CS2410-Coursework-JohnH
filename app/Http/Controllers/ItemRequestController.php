@@ -75,7 +75,7 @@ class ItemRequestController extends Controller
 
     //Save
     $item_request->save();
-    return back()->with('success','The request for the item has been made please be pacient, you will recieve an email from an admin soon.');
+    return back()->with('success','The request for the item has been made please be patient, you will recieve an email from an admin soon.');
   }
 
   /**
