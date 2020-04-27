@@ -8,7 +8,7 @@ use App\LostItem;
 class WelcomeController extends Controller
 {
   /**
-  *
+  * Display a listing of lost items on the welcome view
   *
   * @return \Illuminate\Contracts\Support\Renderable
   */

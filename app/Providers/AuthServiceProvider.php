@@ -33,6 +33,7 @@ class AuthServiceProvider extends ServiceProvider
   */
   public function registerPolicies()
   {
+    //Gate returns the user's admin attribute (0,1)
     Gate::define('user-admin', function ($user)
     {
       return $user->admin;

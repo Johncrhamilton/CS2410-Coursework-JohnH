@@ -38,10 +38,11 @@ class LostItemController extends Controller
   */
   public function store(Request $request)
   {
+    //Form validation
     $lost_item = $this->validate(request(),
     [
       'category' => 'required',
-      'found_time' => 'required',
+      'found_time' => 'required|date_format:Y-m-d H:i:s',
       'found_place' => 'required',
       'image' => 'sometimes|image|mimes:jpeg,png,jpg,gif,svg|max:500',
       'description' => 'required',
@@ -66,6 +67,7 @@ class LostItemController extends Controller
       $fileNameToStore = 'noimage.jpg';
     }
 
+    //Set item request data with form values
     $lost_item = new LostItem;
     $lost_item->category = $request->input('category');
     $lost_item->found_time = $request->input('found_time');
@@ -75,6 +77,8 @@ class LostItemController extends Controller
     $lost_item->image = $fileNameToStore;;
     $lost_item->description = $request->input('description');
     $lost_item->created_at = now();
+
+    //Save
     $lost_item->save();
     return back()->with('success','The lost item has been added.');
   }
@@ -112,16 +116,19 @@ class LostItemController extends Controller
   */
   public function update(Request $request, $id)
   {
+    //If gate determines that user is not an admin
     if (Gate::denies('user-admin'))
     {
       return back()->with('error','Only administrators can edit items.');
     }
 
     $lost_item = LostItem::find($id);
+
+    //Form validation
     $this->validate(request(),
     [
       'category' => 'required',
-      'found_time' => 'required',
+      'found_time' => 'required|date_format:Y-m-d H:i:s',
       'found_place' => 'required',
       'image' => 'sometimes|image|mimes:jpeg,png,jpg,gif,svg|max:500',
       'description' => 'required',
@@ -140,21 +147,21 @@ class LostItemController extends Controller
       $fileNameToStore = $filename.'_'.time().'.'.$extension;
       //Uploads the image
       $path =$request->file('image')->storeAs('public/images', $fileNameToStore);
-    }
-    else
-    {
-      $fileNameToStore = 'noimage.jpg';
+      //Update image
+      $lost_item->image = $fileNameToStore;
     }
 
+    //Set item request data with form values
     $lost_item->category = $request->input('category');
     $lost_item->found_time = $request->input('found_time');
     $lost_item->found_place = $request->input('found_place');
     $lost_item->colour = $request->input('colour');
-    $lost_item->image = $fileNameToStore;;
     $lost_item->description = $request->input('description');
     $lost_item->created_at = now();
+
+    //Save
     $lost_item->save();
-    return redirect('/')->with('success','The lost item has been updated.');
+    return back()->with('success','The lost item has been updated.');
   }
 
   /**
@@ -165,11 +172,13 @@ class LostItemController extends Controller
   */
   public function destroy($id)
   {
+    //If gate determines that user is not an admin
     if (Gate::denies('user-admin'))
     {
       return back()->with('error','Only administrators can delete items.');
     }
 
+    //Remove specific lost item from the database
     $lost_item = LostItem::find($id);
     $lost_item->delete();
     return redirect('/')->with('success','The lost item has been deleted.');

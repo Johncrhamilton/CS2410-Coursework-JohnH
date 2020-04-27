@@ -13,13 +13,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//Authentication routes
 Auth::routes(['verify' => true]);
 
+//Welcome and Home routes
 Route::get('/', 'WelcomeController@index');
-Route::get('home', 'HomeController@index')->name('home');
-Route::get('display_users','UserController@display')->name('display_users');
+Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('lost_items','LostItemController');
+//Resource related routes
+Route::get('/display_users','UserController@display')->name('display_users');
 
-Route::resource('item_requests','ItemRequestController');
-Route::get('create/{id}','ItemRequestController@create');
+Route::resource('/lost_items','LostItemController');
+
+Route::resource('/item_requests','ItemRequestController');
+Route::get('/create/{id}','ItemRequestController@create');
