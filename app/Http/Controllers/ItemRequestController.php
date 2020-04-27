@@ -56,11 +56,11 @@ class ItemRequestController extends Controller
     //Form validation
     $item_request = $this->validate(request(),
     [
-      'user_name' => 'required',
+      'user_name' => 'required|string|max:255',
       'item_id' => 'required|numeric',
       'item_category' => 'required',
-      'item_description' => 'required',
-      'reason' => 'required',
+      'item_description' => 'required|string',
+      'reason' => 'required|string',
     ]);
 
     //Set item request data with form values
@@ -121,8 +121,8 @@ class ItemRequestController extends Controller
     $item_request = ItemRequest::find($id);
     $this->validate(request(),
     [
-      'user_name' => 'required',
-      'reason' => 'required',
+      'user_name' => 'required|string|max:255',
+      'reason' => 'required|string',
     ]);
 
     //Set item request data with form values

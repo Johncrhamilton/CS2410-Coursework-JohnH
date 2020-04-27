@@ -43,9 +43,9 @@ class LostItemController extends Controller
     [
       'category' => 'required',
       'found_time' => 'required|date_format:Y-m-d H:i:s',
-      'found_place' => 'required',
+      'found_place' => 'required|string',
       'image' => 'sometimes|image|mimes:jpeg,png,jpg,gif,svg|max:500',
-      'description' => 'required',
+      'description' => 'required|string',
     ]);
 
     //Handles the uploading of the image
@@ -129,9 +129,9 @@ class LostItemController extends Controller
     [
       'category' => 'required',
       'found_time' => 'required|date_format:Y-m-d H:i:s',
-      'found_place' => 'required',
+      'found_place' => 'required|string',
       'image' => 'sometimes|image|mimes:jpeg,png,jpg,gif,svg|max:500',
-      'description' => 'required',
+      'description' => 'required|string',
     ]);
 
     //Handles the uploading of the image
