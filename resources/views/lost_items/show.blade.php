@@ -52,7 +52,7 @@
               <tr>
                 <th>Image</th>
                 <td colspan='2'>
-                  <img style="width:100%; height:100%" src="{{asset('storage/images/'.$lost_item->image)}}">
+                  <img src="{{asset('storage/images/'.$lost_item->image)}}">
                 </td>
               </tr>
               <tr><th>Description</th><td style="max-width:150px">{{$lost_item->description}}</td></tr>

@@ -74,7 +74,7 @@ class LostItemController extends Controller
     $lost_item->found_user = auth()->user()->id;
     $lost_item->found_place = $request->input('found_place');
     $lost_item->colour = $request->input('colour');
-    $lost_item->image = $fileNameToStore;;
+    $lost_item->image = $fileNameToStore;
     $lost_item->description = $request->input('description');
     $lost_item->created_at = now();
 
