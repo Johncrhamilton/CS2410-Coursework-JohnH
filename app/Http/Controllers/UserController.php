@@ -20,10 +20,10 @@ class UserController extends Controller
     //If gate determines that user is not an admin
     if (Gate::denies('user-admin'))
     {
-      $user = auth()->user();
+      $currentUser = auth()->user();
 
-      //If user is not a non object (guest)
-      if(isset( $user ))
+      //If current user is not a non object (guest)
+      if(isset($currentUser))
       {
         $usersQuery = $usersQuery->where('id', auth()->user()->id);
       }

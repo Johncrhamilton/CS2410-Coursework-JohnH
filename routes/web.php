@@ -27,3 +27,7 @@ Route::resource('/lost_items','LostItemController');
 
 Route::resource('/item_requests','ItemRequestController');
 Route::get('/create/{id}','ItemRequestController@create');
+
+//Mail routes
+Route::get('/send_mail_approve/{id}','ItemRequestController@requestApprove');
+Route::get('/send_mail_disapprove/{id}','ItemRequestController@requestDisapprove');

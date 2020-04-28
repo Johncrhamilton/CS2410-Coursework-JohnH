@@ -46,30 +46,27 @@
                     <th>Item category</th>
                     <th>Item description</th>
                     @if(Gate::allows('user-admin'))
-                      <th colspan="5">Actions</th>
+                      <th colspan="4">Actions</th>
+                    @else
+                      <th colspan="1">Action</th>
                     @endif
                   </tr>
                 </thead>
-              <tbody>
+                <tbody>
                   @foreach($item_requests as $item_request)
                     <tr>
                       <td>{{$item_request['user_name']}}</td>
                       <td>{{$item_request['item_category']}}</td>
                       <td>{{$item_request['item_description']}}</td>
+                      <td><a href="{{action('ItemRequestController@show', $item_request['id'])}}" class="btn btn-primary">Details</a></td>
                       @if(Gate::allows('user-admin'))
-                        <td><a href="{{action('ItemRequestController@show', $item_request['id'])}}" class="btn btn-primary">Details</a></td>
+                        <td><a href="{{action('ItemRequestController@requestApprove', $item_request['user_id'])}}" class="btn btn-primary">Approve</a></td>
+                          <td><a href="{{action('ItemRequestController@requestDisapprove', $item_request['user_id'])}}" class="btn btn-warning">Disapprove</a></td>
                         <td>
                           <form action="{{action('ItemRequestController@destroy', $item_request['id'])}}" method="post">
                             @csrf
                             <input name="_method" type="hidden" value="DELETE">
-                            <button class="btn btn-success" type="submit">Approve</button>
-                          </form>
-                        </td>
-                        <td>
-                          <form action="{{action('ItemRequestController@destroy', $item_request['id'])}}" method="post">
-                            @csrf
-                            <input name="_method" type="hidden" value="DELETE">
-                            <button class="btn btn-warning" type="submit">Disapprove</button>
+                            <button class="btn btn-danger" type="submit">Delete</button>
                           </form>
                         </td>
                       @endif

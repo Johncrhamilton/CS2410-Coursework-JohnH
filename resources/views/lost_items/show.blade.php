@@ -43,9 +43,11 @@
                 <tr><th>Item Id:</th><td>{{$lost_item['id']}}</td></tr>
               @endif
               <tr><th>Category:</th><td>{{$lost_item->category}}</td></tr>
-              <tr><th>Date found:</th><td>{{$lost_item->found_time}}</td></tr>
-              <tr><th>Finder:</th><td>{{$lost_item->found_user}}</td></tr>
-              <tr><th>Place found:</th><td>{{$lost_item->found_place}}</td></tr>
+              <tr><th>Date Found:</th><td>{{$lost_item->found_time}}</td></tr>
+              @if(Gate::allows('user-admin'))
+                <tr><th>Finder Id:</th><td>{{$lost_item->found_user}}</td></tr>
+              @endif
+              <tr><th>Place Found:</th><td>{{$lost_item->found_place}}</td></tr>
               <tr><th>Colour:</th><td>{{$lost_item->colour}}</td></tr>
               <tr>
                 <th>Image</th>

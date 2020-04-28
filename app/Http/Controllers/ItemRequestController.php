@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\MailtrapRequestApprove;
+use App\Mail\MailtrapRequestDisapprove;
 use App\ItemRequest;
 use App\LostItem;
+use App\User;
 use Gate;
 
 class ItemRequestController extends Controller
@@ -111,12 +115,6 @@ class ItemRequestController extends Controller
   */
   public function update(Request $request, $id)
   {
-    //If gate determines that user is not an admin
-    if (Gate::denies('user-admin'))
-    {
-      return back()->with('error','Only administrators can edit requests.');
-    }
-
     //Form validation
     $item_request = ItemRequest::find($id);
     $this->validate(request(),
@@ -153,5 +151,43 @@ class ItemRequestController extends Controller
     $item_request = ItemRequest::find($id);
     $item_request->delete();
     return redirect('item_requests')->with('success','Item request has been deleted.');
+  }
+
+  /**
+  * Send an email of approval to the request maker.
+  *
+  * @param  int  $user_id
+  * @return \Illuminate\Http\Response
+  */
+  public function requestApprove($user_id)
+  {
+    //If gate determines that user is not an admin
+    if (Gate::denies('user-admin'))
+    {
+      return back()->with('error','Only administrators can delete item requests.');
+    }
+
+    $user = User::find($user_id);
+    Mail::to($user->email)->send(new MailtrapRequestApprove($user->name));
+    return redirect('item_requests')->with('success','An approving email has been sent to the request maker.');
+  }
+
+  /**
+  * Send an email of disapproval to the request maker.
+  *
+  * @param  int  $user_id
+  * @return \Illuminate\Http\Response
+  */
+  public function requestDisapprove($user_id)
+  {
+    //If gate determines that user is not an admin
+    if (Gate::denies('user-admin'))
+    {
+      return back()->with('error','Only administrators can delete item requests.');
+    }
+
+    $user = User::find($user_id);
+    Mail::to($user->email)->send(new MailtrapRequestDisapprove($user->name));
+    return redirect('item_requests')->with('success','An disapproving email has been sent to the request maker.');
   }
 }

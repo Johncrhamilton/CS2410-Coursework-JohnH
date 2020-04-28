@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- CSRF Token -->
-  <meta name="csrf-token" content="{{ csrf_token() }}">
+  <meta name="csrf-token" content="{{csrf_token()}}">
   <!-- Title -->
   <title>Find-The-Lost</title>
   <!-- Fonts -->
@@ -19,11 +19,11 @@
     @if (Route::has('login'))
       <div class="top-right links">
         @auth
-          <a id="white" href="{{ url('/home') }}"> <span>Dashboard<span></a>
+          <a id="white" href="{{url('/home')}}"><span>Dashboard<span></a>
         @else
-          <a id="white" href="{{ route('login') }}"><span>Login</span></a>
+          <a id="white" href="{{route('login')}}"><span>Login</span></a>
           @if (Route::has('register'))
-            <a id="white" href="{{ route('register') }}"><span>Register</span></a>
+            <a id="white" href="{{route('register')}}"><span>Register</span></a>
           @endif
         @endauth
       </div>
@@ -66,9 +66,9 @@
                   <th>Colour</th>
                   <th>Date found</th>
                   @auth
-                    <th colspan="4">Actions</th>
+                    <th colspan="2">Actions</th>
                   @else
-                    <th colspan="4">Login/Register for Actions</th>
+                    <th colspan="2">Login/Register for Actions</th>
                   @endauth
                 </tr>
               </thead>
