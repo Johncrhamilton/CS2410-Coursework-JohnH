@@ -18,7 +18,6 @@ class CreateItemRequestsTable extends Migration
       $table->increments('id');
       $table->unsignedInteger('user_id');
       $table->string('user_name',40);
-      $table->string('user_email',80)->unique();
       $table->unsignedInteger('item_id');
       $table->text('item_description');
       $table->enum('item_category', ['pet', 'phone', 'jewellery']);
