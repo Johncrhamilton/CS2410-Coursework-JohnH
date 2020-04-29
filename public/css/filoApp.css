@@ -44,14 +44,6 @@ nav
   color: white !important;
 }
 
-.custom-file-upload::before
-{
-  color: white;
-  content: 'Select some files';
-  display: inline-block;
-  border: 1px solid white;
-}
-
 .dropdown-menu > a:hover
 {
     background-color: black;

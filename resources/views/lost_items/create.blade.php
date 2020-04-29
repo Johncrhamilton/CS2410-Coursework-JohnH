@@ -62,7 +62,7 @@
               </div>
               <div class="col-md-8">
                 <label>Image of the item:</label>
-                <input type="file" name="image" class="custom-file-upload"/>
+                <input id="white" type="file" name="image" placeholder="Image file"/>
               </div>
               <div class="col-md-8">
                 <label>Description:</label>

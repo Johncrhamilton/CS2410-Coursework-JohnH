@@ -48,6 +48,7 @@
                   <span class="caret"></span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="{{ url('/') }}" class="btn btn-primary"><span>Find The Lost</span></a>
                   <a class="dropdown-item" href="{{ url('home') }}" class="btn btn-primary"><span>Dashboard</span></a>
                   <a class="dropdown-item" href="{{ url('item_requests') }}" class="btn btn-primary"><span>Requests</span></a>
                   @if(Gate::allows('user-admin'))
