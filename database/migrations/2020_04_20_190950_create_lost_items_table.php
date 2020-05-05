@@ -21,7 +21,7 @@ class CreateLostitemsTable extends Migration
       $table->unsignedInteger('found_user')->nullable();
       $table->string('found_place',80);
       $table->string('colour',40);
-      $table->binary('image')->nullable();
+      $table->string('image')->nullable();
       $table->text('description');
       $table->timestamps();
     });
